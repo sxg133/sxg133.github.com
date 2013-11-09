@@ -11,7 +11,8 @@
 			}
 
 			body {
-				background-color: white;
+				background-color: #FFFFFF;
+				font-family: sans-serif, Helvetica;
 			}
 
 			.content-wrapper {
@@ -50,7 +51,6 @@
 			.inner-banner > header {
 				margin: 0 auto;
 				color: #FFFFFF;
-				font-family: sans-serif, Helvetica;
 				position: relative;
 				top: 40%;
 				display: inline-block;
@@ -138,7 +138,24 @@
 			.projects {
 				background-color: #F2F2F2;
 			}
-			
+
+			.search {
+				background-color: #FFD449;
+				padding: 30px 0;
+				font-size: 16pt;
+			}
+
+			.search label {
+				color: #002B42;
+			}
+
+			#query {
+				margin: 0 5px;
+				width: 60%;
+				min-width: 300px;
+				font-size: 13pt;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -222,6 +239,19 @@
 				</div>
 			</div>
 		</section>
+		<!-- <section class="search">
+			<div class="content-wrapper">
+				<form class="inner-banner">
+					<fieldset>
+						<label>
+							My Stuff
+							<input type="text" id="query" />
+						</label>
+						<input type="button" value="Search" />
+					</fieldset>
+				</form>
+			</div>
+		</section> -->
 		<section class="projects">
 			<div class="content-wrapper">
 			</div>
@@ -272,11 +302,12 @@
 
 				function clearKey(key) {
 					if (key) {
-						key.className = key.className.replace('pressed', '').trim();
+						key.className = key.className.replace(/pressed/, '').trim();
 					}
 				}
 
 				window.onkeydown = function(e) {
+					console.log('down ' + e.keyCode);
 					var keys = getKeys(e);
 					for (var i=0, ii=keys.length; i<ii; i++) {
 						highlightKey(keys[i]);
