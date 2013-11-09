@@ -239,7 +239,7 @@
 				</div>
 			</div>
 		</section>
-		<!-- <section class="search">
+		<section class="search">
 			<div class="content-wrapper">
 				<form class="inner-banner">
 					<fieldset>
@@ -251,7 +251,7 @@
 					</fieldset>
 				</form>
 			</div>
-		</section> -->
+		</section>
 		<section class="projects">
 			<div class="content-wrapper">
 			</div>
@@ -295,19 +295,18 @@
 				}
 
 				function highlightKey(key) {
-					if (key) {
+					if (key && key.className.indexOf('pressed') == -1) {
 						key.className = key.className.trim() + ' pressed';
 					}
 				}
 
 				function clearKey(key) {
-					if (key) {
-						key.className = key.className.replace(/pressed/, '').trim();
+					if (key && key.className.indexOf('pressed') != -1) {
+						key.className = key.className.replace(/pressed/g, '').trim();
 					}
 				}
 
 				window.onkeydown = function(e) {
-					console.log('down ' + e.keyCode);
 					var keys = getKeys(e);
 					for (var i=0, ii=keys.length; i<ii; i++) {
 						highlightKey(keys[i]);
