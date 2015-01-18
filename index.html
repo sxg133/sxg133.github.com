@@ -3,6 +3,7 @@
 	<head>
 		<title>Sahil Grover - Software Developer</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" rel="stylesheet" />
 		<style type="text/css">
 
 			@import url(http://reset5.googlecode.com/hg/reset.min.css);
@@ -64,12 +65,18 @@
 				margin-right: 10px;
 			}
 
+			.search-form {
+				text-align: center;
+			}
+
 			h1 {
 				font-size: 35pt;
+				margin: 0;
 			}
 
 			h2 {
 				font-size: 20pt;
+				margin: 0;
 			}
 
 			fieldset {
@@ -262,13 +269,12 @@
 		</section>
 		<section class="search">
 			<div class="content-wrapper">
-				<form class="inner-banner">
+				<form class="inner-banner search-form">
 					<fieldset>
 						<label>
 							My Stuff
 							<input type="text" id="query" />
 						</label>
-						<input type="button" value="Search" autocomplete="off" />
 					</fieldset>
 				</form>
 			</div>
