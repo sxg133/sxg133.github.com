@@ -162,14 +162,14 @@
 				color: #002B42;
 			}
 
-			#query {
+			#search-input {
 				margin: 0 5px;
 				width: 60%;
 				min-width: 300px;
 				font-size: 13pt;
 			}
 
-			#stuff {
+			#card-container {
 				text-align: center;
 			}
 
@@ -185,6 +185,7 @@
 				box-shadow: 1px 1px 1px 1px #BEBEBE;
 				color: black;
 				text-decoration: none;
+				transition: opacity .25s;
 			}
 
 			h3 {
@@ -290,14 +291,14 @@
 					<fieldset>
 						<label>
 							My Stuff
-							<input type="text" id="query" />
+							<input type="text" id="search-input" />
 						</label>
 					</fieldset>
 				</form>
 			</div>
 		</section>
 		<section class="projects">
-			<div class="content-wrapper" id="stuff">
+			<div class="content-wrapper" id="card-container">
 				<a href="https://github.com/sxg133/SMap" class="card" data-tags="google maps javascript smap">
 					<h3>SMap</h3>
 					<h4>JavaScript</h4>
@@ -342,7 +343,8 @@
 		</section>
 		<script type="text/javascript">
 
-			document.addEventListener("DOMContentLoaded", function() {
+			// keyboard ui
+			(function() {
 
 				function getKeyID(keyCode){
 					var charstr = String.fromCharCode(keyCode);
@@ -403,7 +405,51 @@
 						clearKey(keys[i]);
 					}
 				}
-			});
+
+			})();
+
+			// search
+			(function() {
+
+				function hasCommonItem(arr1, arr2) {
+					var itemMap = {};
+					for (var i = 0, len = arr1.length; i < len; i++) {
+						itemMap[arr1[i]] = 0;
+					}
+
+					for (var i = 0, len = arr2.length; i < len; i++) {
+						if (arr2[i] in itemMap) {
+							return true;
+						}
+					}
+					return false;
+				}
+
+				var cardContainer = document.getElementById('card-container');
+				var cards = cardContainer.getElementsByTagName('a');
+
+				var searchInput = document.getElementById('search-input');
+				searchInput.addEventListener('input', function() {
+					var searchText = this.value;
+					var words = searchText.split(' ');
+					for (var i = 0, numCards = cards.length; i < numCards; i++) {
+
+						if (words.length === 0 || (words.length === 1 && words[0] === '')) {
+							cards[i].style.opacity = 1;
+							continue;
+						}
+
+						for (var j = 0, numWords = words.length; j < numWords; j++) {
+							var tags = cards[i].dataset.tags.split(' ');
+							if (hasCommonItem(tags, words)) {
+								cards[i].style.opacity = 1;
+							} else {
+								cards[i].style.opacity = .2;
+							}
+						}
+					}
+				});
+			})();
 
 		</script>
 	</body>
