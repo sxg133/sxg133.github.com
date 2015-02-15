@@ -1,0 +1,192 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #FFFFFF;
+	font-family: sans-serif, Helvetica;
+}
+
+.content-wrapper {
+	max-width: 970px;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.banner {
+	background: #77abc6;
+	background: -moz-linear-gradient(top, #77abc6 0%, #258dc8 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#77abc6), color-stop(100%,#258dc8));
+	background: -webkit-linear-gradient(top, #77abc6 0%,#258dc8 100%);
+	background: -ms-linear-gradient(top, #77abc6 0%,#258dc8 100%);
+	background: linear-gradient(to bottom, #77abc6 0%,#258dc8 100%);
+	padding: 100px 0;
+	overflow: auto;
+}
+
+.inner-banner {
+	max-width: 720px;
+	margin: 0 auto;
+}
+
+@media screen and (min-width:620px) {
+	.inner-banner {
+		text-align: center;
+	}
+}
+
+@media screen and (max-width:620px) {
+	.inner-banner {
+		text-align: left;
+	}
+}
+
+.inner-banner > header {
+	margin: 0 auto;
+	color: #FFFFFF;
+	position: relative;
+	top: 40%;
+	float: left;
+	vertical-align: top;
+}
+
+.inner-banner > header > hgroup {
+	line-height: 2.5em;
+	margin-right: 10px;
+}
+
+.search-form {
+	text-align: center;
+}
+
+h1 {
+	font-size: 35pt;
+	margin: 0;
+}
+
+h2 {
+	font-size: 20pt;
+	margin: 0;
+}
+
+fieldset {
+	border: none;
+}
+
+#keyboard {
+	float: left;
+	width: 320px;
+	height: 80px;
+}
+
+.key-row {
+	height: 13%;
+	margin: 5px 0;
+}
+
+.key {
+	width: 12px;
+	height: 100%;
+	display: inline-block;
+	margin: 0 .5%;
+	border-radius: 2px;
+	border: solid thin white;
+}
+
+.key.pressed {
+	background-color: orange;
+}
+
+/* backspace */
+#keycode-8  {
+	width: 24px;
+}
+
+/* tab, backslash, ctrl */
+#keycode-9, #keycode-220, .key.ctrl, .key.alt {
+	width: 18px;
+}
+
+/* caps lock */
+#keycode-20 {
+	width: 20px;
+}
+
+/* enter */
+#keycode-13 {
+	width: 37px;
+}
+
+#shift-left {
+	width: 36px;
+}
+
+#shift-right {
+	width: 43px;
+}
+
+/* spacebar */
+#keycode-32 {
+	width: 104px;
+}
+
+#alt-left {
+	margin-left: 29px;
+}
+
+#ctrl-right {
+	margin-left: 61px;
+}
+
+.projects {
+	background-color: #F2F2F2;
+}
+
+.search {
+	background-color: #FFD449;
+	padding: 30px 0;
+	font-size: 16pt;
+}
+
+.search label {
+	color: #002B42;
+}
+
+#query {
+	margin: 0 5px;
+	width: 60%;
+	min-width: 300px;
+	font-size: 13pt;
+}
+
+#stuff {
+	text-align: center;
+}
+
+.card {
+	display: inline-block;
+	background-color: white;
+	padding: 10px;
+	margin: 10px;
+	width: 200px;
+	height: 200px;
+	vertical-align: middle;
+	text-align: left;
+	box-shadow: 1px 1px 1px 1px #BEBEBE;
+	color: black;
+	text-decoration: none;
+}
+
+h3 {
+	font-size: 16pt;
+	margin: 10px 0;
+}
+
+h4 {
+	font-size: 13pt;
+	margin: 10px 0;
+}
+
+.card p {
+	font-size: 13pt;
+}
