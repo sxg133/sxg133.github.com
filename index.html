@@ -232,7 +232,7 @@
 
 				var searchInput = document.getElementById('search-input');
 				searchInput.addEventListener('input', function() {
-					var searchText = this.value;
+					var searchText = this.value.toLowerCase();
 					var words = searchText.split(' ');
 					for (var i = 0, numCards = cards.length; i < numCards; i++) {
 
