@@ -37,7 +37,7 @@ body {
 
 @media screen and (max-width:620px) {
 	.inner-banner {
-		text-align: left;
+		text-align: center;
 	}
 }
 
@@ -152,14 +152,14 @@ fieldset {
 	color: #002B42;
 }
 
-#query {
+#search-input {
 	margin: 0 5px;
 	width: 60%;
 	min-width: 300px;
 	font-size: 13pt;
 }
 
-#stuff {
+#card-container {
 	text-align: center;
 }
 
@@ -175,6 +175,7 @@ fieldset {
 	box-shadow: 1px 1px 1px 1px #BEBEBE;
 	color: black;
 	text-decoration: none;
+	transition: opacity .25s;
 }
 
 h3 {
