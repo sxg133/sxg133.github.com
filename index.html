@@ -213,18 +213,26 @@
 			// search
 			(function() {
 
-				function hasCommonItem(arr1, arr2) {
+				String.prototype.contains = function(str) {
+					return this.indexOf(str) !== -1;
+				};
+
+				function hasMatchingKeywords(sourceTerms, searchTerms) {
 					var itemMap = {};
-					for (var i = 0, len = arr1.length; i < len; i++) {
-						itemMap[arr1[i]] = 0;
+					for (var i = 0, sourceLen = sourceTerms.length; i < sourceLen; i++) {
+						for (var j = 0, searchLen = searchTerms.length; j < searchLen; j++) {
+							if (sourceTerms[i].contains(searchTerms[j])) {
+								return true;
+							}
+						}
 					}
 
-					for (var i = 0, len = arr2.length; i < len; i++) {
-						if (arr2[i] in itemMap) {
+					/*for (var i = 0, len = searchTerms.length; i < len; i++) {
+						if (searchTerms[i] in itemMap) {
 							return true;
 						}
 					}
-					return false;
+*/					return false;
 				}
 
 				var cardContainer = document.getElementById('card-container');
@@ -237,16 +245,16 @@
 					for (var i = 0, numCards = cards.length; i < numCards; i++) {
 
 						if (words.length === 0 || (words.length === 1 && words[0] === '')) {
-							cards[i].style.opacity = 1;
+							cards[i].style.display = 'inline-block';
 							continue;
 						}
 
 						for (var j = 0, numWords = words.length; j < numWords; j++) {
 							var tags = cards[i].dataset.tags.split(' ');
-							if (hasCommonItem(tags, words)) {
-								cards[i].style.opacity = 1;
+							if (hasMatchingKeywords(tags, words)) {
+								cards[i].style.display = 'inline-block';
 							} else {
-								cards[i].style.opacity = .2;
+								cards[i].style.display = 'none';
 							}
 						}
 					}
