@@ -3,7 +3,7 @@ html, body {
 }
 
 body {
-	background-color: #FFFFFF;
+	background-color: #F2F2F2;
 	font-family: sans-serif, Helvetica;
 }
 
@@ -136,10 +136,6 @@ fieldset {
 
 #ctrl-right {
 	margin-left: 61px;
-}
-
-.projects {
-	background-color: #F2F2F2;
 }
 
 .search {
