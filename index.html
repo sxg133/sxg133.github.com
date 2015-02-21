@@ -144,7 +144,123 @@
 				</a>
 			</div>
 		</section>
+		<section class="content-wrapper" id="charts">
+			<div id="language-chart">
+			</div>
+		</section>
 		<script src="js/keyboard.js"></script>
 		<script src="js/search.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://www.google.com/jsapi"></script>
+		<script>
+
+			(function() {
+
+				function createChartData(repos) {
+					var languages = ['Language'];
+					for (var i = 0, reposLength = repos.length; i < reposLength; i++) {
+						if (repos[i].fork) {
+							continue;
+						}
+
+						for (var lang in repos[i].languageByteCounts) {
+							if ($.inArray(lang, languages) === -1) {
+								languages.push(lang);
+							}
+						}
+					}
+					languages.push({ role : 'annotation' });
+
+					var data = [languages];
+					for (var i = 0, reposLength = repos.length; i < reposLength; i++) {
+						if (repos[i].fork) {
+							continue;
+						}
+
+						var projectData = [repos[i].name];
+						for (var j = 1, langLength = languages.length - 1; j < langLength; j++) {
+							if (repos[i].languageByteCounts.hasOwnProperty(languages[j])) {
+								projectData.push( repos[i].languageByteCounts[languages[j]] / 1000);
+							} else {
+								projectData.push(0);
+							}
+						}
+						projectData.push('');	// styles
+						data.push(projectData);
+					}
+
+					return google.visualization.arrayToDataTable(data);
+				}
+
+				function drawChart(repos) {
+					var data = createChartData(repos);
+					
+					var options = {
+						title: "Language Distribution",
+						width: 600,
+						height: 400,
+						legend: { position: 'right', maxLines: 3 },
+						bar: { groupWidth: '75%' },
+						axes: {
+							y: {
+								0: {label: 'KB'}
+							}
+						},
+						isStacked: true,
+						vAxis: {
+							format: "#,### KB",
+						}
+					};
+
+					var chart = new google.visualization.ColumnChart(
+						document.getElementById('language-chart')
+						);
+					chart.draw(data, options);
+				}
+
+				function getGithubRepos() {
+
+					$.getJSON('https://api.github.com/users/sxg133/repos')
+						.done(function(response) {
+							var repos = [];
+							var languageRequests = [];
+							for (var i = 0, len = response.length; i < len; i++) {
+								repos.push( response[i] );
+								var $languageRequest = $.getJSON(response[i].languages_url);
+								languageRequests.push($languageRequest);
+							}
+							$.when.apply($, languageRequests)
+								.done(function() {
+									var languageByteCounts = {};
+									for (var i = 0, len = arguments.length; i < len; i++) {
+										if (arguments[i][1] !== "success") {
+											continue;
+										}
+
+										var response = arguments[i][0];
+										repos[i].languageByteCounts = response;
+										/*for (var language in response) {
+											if (!languageByteCounts.hasOwnProperty(language)) {
+												languageByteCounts[language] = 0;
+											}
+
+											languageByteCounts[language] += response[language];
+										}*/
+									}
+
+									drawChart(repos);
+								});
+						})
+						.fail(function() {
+							// TODO : HANDLE FAILURE
+						});
+					}
+
+					google.load('visualization', '1.0', {'packages':['corechart']});
+					google.setOnLoadCallback(getGithubRepos);
+
+			})();
+
+		</script>
 	</body>
 </html>

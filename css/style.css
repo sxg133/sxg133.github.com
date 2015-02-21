@@ -186,3 +186,14 @@ h4 {
 .card p {
 	font-size: 13pt;
 }
+
+#charts > div {
+	max-width: 600px;
+	margin: 10px auto;
+}
+
+@media (max-width: 600px) {
+	#charts {
+		display: none;
+	}
+}
