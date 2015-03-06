@@ -41,4 +41,6 @@
 			}
 		}
 	});
+
+	searchInput.focus();
 })();
