@@ -74,6 +74,7 @@ fieldset {
 }
 
 #keyboard {
+	text-align: left;
 	float: left;
 	width: 320px;
 	height: 80px;
@@ -114,7 +115,7 @@ fieldset {
 
 /* enter */
 #keycode-13 {
-	width: 37px;
+	width: 38px;
 }
 
 #shift-left {
@@ -135,7 +136,7 @@ fieldset {
 }
 
 #ctrl-right {
-	margin-left: 61px;
+	margin-left: 65px;
 }
 
 .search {
