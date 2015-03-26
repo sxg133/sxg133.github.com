@@ -8,7 +8,7 @@
 		var itemMap = {};
 		for (var i = 0, sourceLen = sourceTerms.length; i < sourceLen; i++) {
 			for (var j = 0, searchLen = searchTerms.length; j < searchLen; j++) {
-				if (sourceTerms[i].contains(searchTerms[j])) {
+				if (searchTerms[j] && sourceTerms[i].contains(searchTerms[j])) {
 					return true;
 				}
 			}
